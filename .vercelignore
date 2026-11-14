@@ -1,0 +1,13 @@
+# Installed and built on Vercel — never upload local copies
+node_modules
+dist
+
+# Local-only settings and data (.env.local points at the Convex *dev* deployment)
+*.local
+.env*
+.convex
+
+# Agent/editor tooling, not part of the site
+.agents
+.claude
+.vscode

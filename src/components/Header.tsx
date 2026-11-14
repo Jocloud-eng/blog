@@ -11,7 +11,7 @@ export function Header() {
         >
           <span
             aria-hidden="true"
-            className="flex size-8 shrink-0 items-center justify-center rounded bg-primary font-serif text-xs font-semibold tracking-wider text-primary-foreground transition-opacity group-hover:opacity-90"
+            className="flex size-8 shrink-0 items-center justify-center rounded bg-brand font-serif text-xs font-bold tracking-wider text-white transition-opacity group-hover:opacity-90"
           >
             TR
           </span>
