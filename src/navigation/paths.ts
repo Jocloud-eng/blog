@@ -3,6 +3,8 @@ import { FileText, ReceiptText, Users, type LucideIcon } from 'lucide-react'
 export const PATHS = {
   LANDING: '/',
   BLOG_DETAILS: '/blog',
+  BLOG_DETAILS_2: '/blog2',
+  BLOG_DETAILS_3: '/blog3',
   ADMIN: '/admin',
   ADMIN_BLOGS: '/admin/blogs',
   ADMIN_TRANSACTIONS: '/admin/transactions',

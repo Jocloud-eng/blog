@@ -1,6 +1,6 @@
-import type { ReactNode } from 'react'
-import { Header } from '../components/Header'
-import { Footer } from '../components/Footer'
+import type { ReactNode } from 'react';
+import { Header } from '../components/Header';
+import { Footer } from '../components/Footer';
 
 export function PublicLayout({ children }: { children: ReactNode }) {
   return (
@@ -11,5 +11,5 @@ export function PublicLayout({ children }: { children: ReactNode }) {
       </main>
       <Footer />
     </div>
-  )
+  );
 }
