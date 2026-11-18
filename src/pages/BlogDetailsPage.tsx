@@ -128,6 +128,7 @@ export function BlogDetailsPage(): React.ReactElement {
                 </div>
               </div>
             )}
+          </div>
         </article>
       </main>
     </div>
