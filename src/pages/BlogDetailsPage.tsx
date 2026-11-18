@@ -130,7 +130,6 @@ export function BlogDetailsPage(): React.ReactElement {
               onUnlock={() => setUnlocked(true)}
             />
           )}
-          </div>
         </article>
       </main>
     </div>
