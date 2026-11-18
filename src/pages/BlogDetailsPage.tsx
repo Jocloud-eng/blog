@@ -112,22 +112,24 @@ export function BlogDetailsPage(): React.ReactElement {
             {isUnlocked ? (
               <div dangerouslySetInnerHTML={{ __html: blog.fullContentHtml }} />
             ) : (
-              <div className="relative min-h-[260px] overflow-hidden">
+              <div className="relative">
                 <div className="filter blur-[2px] opacity-40 select-none pointer-events-none" dangerouslySetInnerHTML={{ __html: blog.previewContentHtml }} />
                 <div className="absolute inset-x-0 bottom-0 h-full bg-gradient-to-t from-[#fafaf9] via-[#fafaf9]/80 to-transparent pointer-events-none" />
-                <div className="absolute inset-x-0 bottom-0 flex justify-center px-4 pb-4">
-                  <MobileMoneyPaywallCard
-                    paywall={{
-                      title: 'Support Independent Writing & Unlock Full Essay',
-                      description: blog.excerpt,
-                      currency: blog.price.currency,
-                      amount: String(blog.price.amount),
-                    }}
-                    onUnlock={() => setUnlocked(true)}
-                  />
-                </div>
               </div>
             )}
+          </div>
+
+          {!isUnlocked && (
+            <MobileMoneyPaywallCard
+              paywall={{
+                title: 'Support Independent Writing & Unlock Full Essay',
+                description: blog.excerpt,
+                currency: blog.price.currency,
+                amount: String(blog.price.amount),
+              }}
+              onUnlock={() => setUnlocked(true)}
+            />
+          )}
           </div>
         </article>
       </main>
