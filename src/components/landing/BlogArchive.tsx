@@ -2,7 +2,6 @@ import { useState } from 'react'
 import { ArrowRight, ChevronLeft, ChevronRight, Clock } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import { BLOG_CATEGORIES, type BlogCategory, type BlogPost } from '../../data/landing'
-import { Link } from '../../navigation/RouterContext'
 import { PATHS } from '../../navigation/paths'
 
 type Filter = 'All' | BlogCategory
@@ -165,20 +164,14 @@ function BlogCard({ post }: { post: BlogPost }) {
         </div>
 
         <div className="mt-6 flex items-center justify-between border-t border-border pt-4">
-          <Link
-            to={
-              post.id === '2'
-                ? PATHS.BLOG_DETAILS_2
-                : post.id === '3'
-                  ? PATHS.BLOG_DETAILS_3
-                  : PATHS.BLOG_DETAILS
-            }
+          <a
+            href={`${PATHS.BLOG_DETAILS}?slug=${encodeURIComponent(post.id)}`}
             className="inline-flex items-center gap-1.5 text-xs font-semibold text-brand transition-all group-hover:gap-2 after:absolute after:inset-0 after:rounded-2xl focus-visible:outline-none focus-visible:after:outline-2 focus-visible:after:outline-offset-2 focus-visible:after:outline-ring"
           >
             <span>Read</span>
             <span className="sr-only">: {post.title}</span>
             <ArrowRight aria-hidden="true" className="size-3.5" />
-          </Link>
+          </a>
         </div>
       </div>
     </article>

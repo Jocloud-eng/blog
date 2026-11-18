@@ -1,6 +1,6 @@
 import authorPhoto from '../assets/kewoda-joanitah.jpeg'
 
-export const BLOG_CATEGORIES = ['Software Engineering', 'Web Development'] as const
+export const BLOG_CATEGORIES = ['Software Engineering', 'Web Development', 'Technology', 'Architecture', 'Culture'] as const
 
 export type BlogCategory = (typeof BLOG_CATEGORIES)[number]
 
