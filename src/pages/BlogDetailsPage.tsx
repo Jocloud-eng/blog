@@ -4,6 +4,7 @@ import { api } from '../../convex/_generated/api';
 import { Link } from '../navigation/RouterContext';
 import { PATHS } from '../navigation/paths';
 import KewodaImg from '../assets/kewoda-joanitah.jpeg';
+import { MobileMoneyPaywallCard } from '../components/MobileMoneyPaywallCard';
 import { Lock, ArrowLeft, Copy, Clock, Calendar } from 'lucide-react';
 
 export function BlogDetailsPage(): React.ReactElement {
@@ -119,14 +120,15 @@ export function BlogDetailsPage(): React.ReactElement {
           </div>
 
           {!isUnlocked && (
-            <div className="mt-8">
-              <div className="text-center text-sm text-neutral-600 mb-4">
-                Unlock full article for {blog.price.currency} {blog.price.amount.toLocaleString()}.
-              </div>
-              <button onClick={() => setUnlocked(true)} className="mx-auto block px-4 py-2 text-sm font-medium text-white bg-[#2563eb] rounded-lg hover:bg-blue-700">
-                Unlock (demo)
-              </button>
-            </div>
+            <MobileMoneyPaywallCard
+              paywall={{
+                title: 'Support Independent Writing & Unlock Full Essay',
+                description: blog.excerpt,
+                currency: blog.price.currency,
+                amount: String(blog.price.amount),
+              }}
+              onUnlock={() => setUnlocked(true)}
+            />
           )}
         </article>
       </main>
