@@ -88,7 +88,7 @@ export const BLOG_POSTS: BlogPost[] = [
     excerpt:
       'How ubiquitous language, bounded contexts, and aggregates help you shape code around the real problem domain instead of around database tables and frameworks.',
     category: 'Software Engineering',
-    pricing: { kind: 'free' },
+    pricing: { kind: 'paid', currency: 'UGX', amount: 5000 },
     publishedAt: '2026-11-14',
     readTimeMinutes: 14,
     imageUrl:

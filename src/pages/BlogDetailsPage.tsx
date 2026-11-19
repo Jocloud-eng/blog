@@ -127,7 +127,14 @@ export function BlogDetailsPage(): React.ReactElement {
             </button>
           </div>
 
-          <div className="prose prose-neutral max-w-none text-neutral-700 text-sm sm:text-base leading-relaxed space-y-6" dangerouslySetInnerHTML={{ __html: contentHtml }} />
+          {isPaid && contentHtml.includes('<p><strong>2.') ? (
+            <>
+              <div className="prose prose-neutral max-w-none text-neutral-700 text-sm sm:text-base leading-relaxed space-y-6" dangerouslySetInnerHTML={{ __html: contentHtml.split('<p><strong>2.')[0] }} />
+              <div className="prose prose-neutral max-w-none text-neutral-700 text-sm sm:text-base leading-relaxed space-y-6 filter blur-[3px] opacity-50 select-none pointer-events-none" dangerouslySetInnerHTML={{ __html: '<p><strong>2.' + contentHtml.split('<p><strong>2.')[1] }} />
+            </>
+          ) : (
+            <div className="prose prose-neutral max-w-none text-neutral-700 text-sm sm:text-base leading-relaxed space-y-6" dangerouslySetInnerHTML={{ __html: contentHtml }} />
+          )}
 
           {isPaid && (
             <div className="mt-8">
