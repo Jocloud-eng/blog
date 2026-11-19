@@ -64,9 +64,9 @@ export const BLOG_POSTS: BlogPost[] = [
     excerpt:
       'Clear names, small functions, and honest comments: the everyday habits that turn code that merely works into code a team can review, maintain, and extend.',
     category: 'Software Engineering',
-    pricing: { kind: 'paid', currency: 'UGX', amount: 10000 },
+    pricing: { kind: 'free' },
     publishedAt: '2026-10-24',
-    readTimeMinutes: 8,
+    readTimeMinutes: 10,
     imageUrl:
       'https://images.unsplash.com/photo-1461749280684-dccba630e2f6?auto=format&fit=crop&q=80&w=800',
   },
@@ -76,9 +76,9 @@ export const BLOG_POSTS: BlogPost[] = [
     excerpt:
       'A practical walkthrough of components, layout, and utility classes for interfaces that hold up on every screen, from budget phones to wide desktop monitors.',
     category: 'Web Development',
-    pricing: { kind: 'free' },
+    pricing: { kind: 'paid', currency: 'UGX', amount: 7000 },
     publishedAt: '2026-11-02',
-    readTimeMinutes: 5,
+    readTimeMinutes: 7,
     imageUrl:
       'https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&q=80&w=800',
   },
@@ -88,9 +88,9 @@ export const BLOG_POSTS: BlogPost[] = [
     excerpt:
       'How ubiquitous language, bounded contexts, and aggregates help you shape code around the real problem domain instead of around database tables and frameworks.',
     category: 'Software Engineering',
-    pricing: { kind: 'paid', currency: 'UGX', amount: 5000 },
+    pricing: { kind: 'free' },
     publishedAt: '2026-11-14',
-    readTimeMinutes: 12,
+    readTimeMinutes: 14,
     imageUrl:
       'https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&q=80&w=800',
   },
