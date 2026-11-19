@@ -6,6 +6,7 @@ import { Link } from '../navigation/RouterContext';
 import { PATHS } from '../navigation/paths';
 import { MobileMoneyPaywallCard } from '../components/MobileMoneyPaywallCard';
 import { CLEAN_CODE_HTML } from '../data/cleanCodeContent';
+import { REACT_TAILWIND_HTML } from '../data/reactTailwindContent';
 
 function getSlugFromUrl(): string {
   if (typeof window === 'undefined') return '';
@@ -58,6 +59,8 @@ export function BlogDetailsPage(): React.ReactElement {
   const contentHtml =
     blog.slug === 'clean-code-practice'
       ? CLEAN_CODE_HTML
+      : blog.slug === 'react-tailwind-responsive'
+      ? REACT_TAILWIND_HTML
       : blog.fullContentHtml || blog.previewContentHtml || '';
 
   return (
