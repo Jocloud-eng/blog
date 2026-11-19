@@ -1,4 +1,4 @@
-import { Plus } from 'lucide-react'
+import { Plus, Pencil, Trash2 } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { useQuery } from 'convex/react'
 import { api } from '../../../convex/_generated/api'
@@ -7,7 +7,18 @@ import { PATHS } from '../../navigation/paths'
 
 export function AdminBlogsPage() {
   const navigate = useNavigate()
-  const blogs = useQuery(api.blogs.listAllBlogs)
+  const blogs = useQuery(api.blogs.listAllBlogs) ?? []
+
+  const all = blogs.length
+  const published = blogs.filter((b) => b.status === 'published').length
+  const drafts = blogs.filter((b) => b.status === 'draft').length
+  const archived = 0
+
+  const fmtDate = (ts: number) =>
+    new Date(ts).toLocaleDateString('en-US', { month: 'short', day: '2-digit', year: 'numeric' })
+
+  const accessLabel = (b: (typeof blogs)[number]) =>
+    b.subscriptionMode === 'free' ? 'Free' : `${b.price.currency} ${b.price.amount.toLocaleString('en-US')}`
 
   return (
     <div className="flex flex-1 flex-col">
@@ -25,23 +36,46 @@ export function AdminBlogsPage() {
         </Button>
       </div>
 
-      <div className="mt-6">
-        {blogs === undefined ? (
-          <p className="text-sm text-muted-foreground">Loading…</p>
-        ) : blogs.length === 0 ? (
-          <p className="text-sm text-muted-foreground">No blogs yet.</p>
-        ) : (
-          <ul className="divide-y divide-border">
+      <div className="mt-6 flex gap-6 text-sm">
+        <div><span className="font-semibold text-foreground">{all}</span> <span className="text-muted-foreground">All</span></div>
+        <div><span className="font-semibold text-foreground">{published}</span> <span className="text-muted-foreground">Published</span></div>
+        <div><span className="font-semibold text-foreground">{drafts}</span> <span className="text-muted-foreground">Drafts</span></div>
+        <div><span className="font-semibold text-foreground">{archived}</span> <span className="text-muted-foreground">Archived</span></div>
+      </div>
+
+      <div className="mt-6 overflow-x-auto">
+        <table className="w-full text-sm">
+          <thead>
+            <tr className="border-b border-border text-left text-xs text-muted-foreground">
+              <th className="py-2 pr-4 font-medium">Post</th>
+              <th className="py-2 pr-4 font-medium">Category</th>
+              <th className="py-2 pr-4 font-medium">Status</th>
+              <th className="py-2 pr-4 font-medium">Access</th>
+              <th className="py-2 pr-4 font-medium">Updated</th>
+              <th className="py-2 font-medium">Actions</th>
+            </tr>
+          </thead>
+          <tbody>
             {blogs.map((blog) => (
-              <li key={blog._id} className="flex items-center justify-between py-3">
-                <div>
-                  <p className="text-sm font-medium text-foreground">{blog.title}</p>
-                  <p className="text-xs text-muted-foreground">{blog.category} · {blog.status} · {blog.subscriptionMode}</p>
-                </div>
-              </li>
+              <tr key={blog._id} className="border-b border-border">
+                <td className="py-3 pr-4">
+                  <p className="font-medium text-foreground">{blog.title}</p>
+                  <p className="text-xs text-muted-foreground">{blog.slug} · {blog.readTime}</p>
+                </td>
+                <td className="py-3 pr-4 text-muted-foreground">{blog.category}</td>
+                <td className="py-3 pr-4 text-muted-foreground">{blog.status}</td>
+                <td className="py-3 pr-4 text-muted-foreground">{accessLabel(blog)}</td>
+                <td className="py-3 pr-4 text-muted-foreground">{fmtDate(blog.updatedAt)}</td>
+                <td className="py-3">
+                  <div className="flex gap-2">
+                    <button type="button" className="text-muted-foreground hover:text-foreground"><Pencil className="size-3.5" /></button>
+                    <button type="button" className="text-muted-foreground hover:text-foreground"><Trash2 className="size-3.5" /></button>
+                  </div>
+                </td>
+              </tr>
             ))}
-          </ul>
-        )}
+          </tbody>
+        </table>
       </div>
     </div>
   )
