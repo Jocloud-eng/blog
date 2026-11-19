@@ -7,6 +7,7 @@ import { PATHS } from '../navigation/paths';
 import { MobileMoneyPaywallCard } from '../components/MobileMoneyPaywallCard';
 import { CLEAN_CODE_HTML } from '../data/cleanCodeContent';
 import { REACT_TAILWIND_HTML } from '../data/reactTailwindContent';
+import { DDD_HTML } from '../data/dddContent';
 
 function getSlugFromUrl(): string {
   if (typeof window === 'undefined') return '';
@@ -61,6 +62,8 @@ export function BlogDetailsPage(): React.ReactElement {
       ? CLEAN_CODE_HTML
       : blog.slug === 'react-tailwind-responsive'
       ? REACT_TAILWIND_HTML
+      : blog.slug === 'domain-driven-design'
+      ? DDD_HTML
       : blog.fullContentHtml || blog.previewContentHtml || '';
 
   return (
