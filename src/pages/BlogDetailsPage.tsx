@@ -5,6 +5,7 @@ import { Lock, Clock, Calendar, Copy } from 'lucide-react';
 import { Link } from '../navigation/RouterContext';
 import { PATHS } from '../navigation/paths';
 import { MobileMoneyPaywallCard } from '../components/MobileMoneyPaywallCard';
+import { CLEAN_CODE_HTML } from '../data/cleanCodeContent';
 
 function getSlugFromUrl(): string {
   if (typeof window === 'undefined') return '';
@@ -54,7 +55,10 @@ export function BlogDetailsPage(): React.ReactElement {
     day: '2-digit',
     year: 'numeric',
   });
-  const contentHtml = blog.fullContentHtml || blog.previewContentHtml || '';
+  const contentHtml =
+    blog.slug === 'clean-code-practice'
+      ? CLEAN_CODE_HTML
+      : blog.fullContentHtml || blog.previewContentHtml || '';
 
   return (
     <div className="min-h-screen bg-[#fafaf9] text-neutral-900 font-sans selection:bg-blue-100 selection:text-blue-900 flex flex-col justify-between">
