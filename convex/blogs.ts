@@ -69,8 +69,7 @@ export const getBlogBySlug = query({
 export const seedBlogs = mutation({
   args: {},
   handler: async (ctx) => {
-    const existing = await ctx.db.query("blogs").take(1);
-    if (existing.length > 0) return "already seeded";
+    // upsert by slug so content updates reflect
 
     const posts = [
       {
@@ -133,7 +132,16 @@ export const seedBlogs = mutation({
     ];
 
     for (const post of posts) {
-      await ctx.db.insert("blogs", post as any);
+      const existing = await ctx.db
+        .query("blogs")
+        .withIndex("by_slug", (q) => q.eq("slug", post.slug))
+        .unique()
+        .catch(() => null);
+      if (existing) {
+        await ctx.db.patch(existing._id, post as any);
+      } else {
+        await ctx.db.insert("blogs", post as any);
+      }
     }
     return "seeded";
   },

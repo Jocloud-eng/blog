@@ -1,4 +1,5 @@
-import { useQuery } from 'convex/react';
+import { useEffect } from 'react';
+import { useQuery, useMutation } from 'convex/react';
 import { api } from '../../convex/_generated/api';
 import { AuthorHero } from '../components/landing/AuthorHero';
 import { BlogArchive } from '../components/landing/BlogArchive';
@@ -7,6 +8,10 @@ import type { BlogPost } from '../data/landing';
 
 export function LandingPage() {
   const blogs = useQuery(api.blogs.listPublishedBlogs);
+  const seedBlogs = useMutation(api.blogs.seedBlogs);
+  useEffect(() => {
+    seedBlogs().catch(() => {});
+  }, [seedBlogs]);
   const posts: BlogPost[] = (blogs ?? []).map((blog) => ({
     id: blog.slug,
     title: blog.title,
