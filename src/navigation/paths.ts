@@ -12,7 +12,33 @@ export const PATHS = {
   ADMIN_USERS: '/admin/users',
 } as const
 
-export type AppPath = (typeof PATHS)[keyof typeof PATHS]
+/** Every fixed route. */
+export type StaticPath = (typeof PATHS)[keyof typeof PATHS]
+
+/** A single post: `/blog/<slug>`. */
+export type BlogPostPath = `${typeof PATHS.BLOG_DETAILS}/${string}`
+
+export type AppPath = StaticPath | BlogPostPath
+
+/** Build a post URL. Use this instead of concatenating strings: `<Link to={blogPostPath(post.slug)}>`. */
+export function blogPostPath(slug: string): BlogPostPath {
+  return `${PATHS.BLOG_DETAILS}/${encodeURIComponent(slug)}`
+}
+
+/** `/blog/my-post` -> `my-post`. Returns null for `/blog`, `/blog/a/b`, or anything else. */
+export function parseBlogSlug(pathname: string): string | null {
+  const prefix = `${PATHS.BLOG_DETAILS}/`
+  if (!pathname.startsWith(prefix)) return null
+
+  const raw = pathname.slice(prefix.length)
+  if (!raw || raw.includes('/')) return null
+
+  try {
+    return decodeURIComponent(raw)
+  } catch {
+    return null // malformed %-sequence
+  }
+}
 
 export interface AdminNavItem {
   label: string

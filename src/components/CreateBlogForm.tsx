@@ -214,7 +214,7 @@ export const CreateBlogForm: React.FC = () => {
 
       <div>
         <label className="block text-xs font-semibold uppercase tracking-wider text-neutral-500 mb-2">Blog Body</label>
-        <RichTextEditor editor={editor} className="min-h-[300px] rounded-lg border border-neutral-200">
+        <RichTextEditor editor={editor} className="min-h-75 rounded-lg border border-neutral-200">
           <RichTextEditor.Toolbar>
             <RichTextEditor.ControlsGroup>
               <RichTextEditor.Bold />
@@ -233,7 +233,7 @@ export const CreateBlogForm: React.FC = () => {
               <RichTextEditor.Blockquote />
             </RichTextEditor.ControlsGroup>
           </RichTextEditor.Toolbar>
-          <RichTextEditor.Content className="min-h-[240px] px-3 py-2" />
+          <RichTextEditor.Content className="min-h-60 px-3 py-2" />
         </RichTextEditor>
       </div>
 
@@ -243,7 +243,7 @@ export const CreateBlogForm: React.FC = () => {
         <button
           type="submit"
           disabled={submitting}
-          className="px-4 py-2 text-sm font-medium text-white bg-[#2563eb] rounded-lg hover:bg-blue-700 disabled:opacity-60"
+          className="px-4 py-2 text-sm font-medium text-white bg-brand rounded-lg hover:bg-blue-700 disabled:opacity-60"
         >
           {submitting ? 'Saving...' : 'Create Blog'}
         </button>
