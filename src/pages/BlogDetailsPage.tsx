@@ -5,9 +5,7 @@ import { Lock, Clock, Calendar, Copy } from 'lucide-react';
 import { Link } from '../navigation/RouterContext';
 import { PATHS } from '../navigation/paths';
 import { MobileMoneyPaywallCard } from '../components/MobileMoneyPaywallCard';
-import { CLEAN_CODE_HTML } from '../data/cleanCodeContent';
-import { REACT_TAILWIND_HTML } from '../data/reactTailwindContent';
-import { DDD_HTML } from '../data/dddContent';
+
 
 function getSlugFromUrl(): string {
   if (typeof window === 'undefined') return '';
@@ -50,21 +48,14 @@ export function BlogDetailsPage(): React.ReactElement {
     );
   }
 
-  const isPaid = blog.subscriptionMode !== 'free' && blog.slug !== 'clean-code-practice';
+  const isPaid = blog.subscriptionMode !== 'free';
   const badgeType = isPaid ? 'Subscriber Exclusive' : 'Free Read';
   const date = new Date(blog.updatedAt || Date.now()).toLocaleDateString('en-US', {
     month: 'short',
     day: '2-digit',
     year: 'numeric',
   });
-  const contentHtml =
-    blog.slug === 'clean-code-practice'
-      ? CLEAN_CODE_HTML
-      : blog.slug === 'react-tailwind-responsive'
-      ? REACT_TAILWIND_HTML
-      : blog.slug === 'domain-driven-design'
-      ? DDD_HTML
-      : blog.fullContentHtml || blog.previewContentHtml || '';
+  const contentHtml = blog.fullContentHtml || blog.previewContentHtml || '';
 
   return (
     <div className="min-h-screen bg-[#fafaf9] text-neutral-900 font-sans selection:bg-blue-100 selection:text-blue-900 flex flex-col justify-between">

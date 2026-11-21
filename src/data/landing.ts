@@ -57,41 +57,4 @@ export const AUTHOR: AuthorProfile = {
   avatarUrl: authorPhoto,
 }
 
-export const BLOG_POSTS: BlogPost[] = [
-  {
-    id: '1',
-    title: 'Clean Code in Practice: Writing Software Your Teammates Can Read',
-    excerpt:
-      'Clear names, small functions, and honest comments: the everyday habits that turn code that merely works into code a team can review, maintain, and extend.',
-    category: 'Software Engineering',
-    pricing: { kind: 'free' },
-    publishedAt: '2026-10-24',
-    readTimeMinutes: 10,
-    imageUrl:
-      'https://images.unsplash.com/photo-1461749280684-dccba630e2f6?auto=format&fit=crop&q=80&w=800',
-  },
-  {
-    id: '2',
-    title: 'Building Responsive Interfaces with React and Tailwind CSS',
-    excerpt:
-      'A practical walkthrough of components, layout, and utility classes for interfaces that hold up on every screen, from budget phones to wide desktop monitors.',
-    category: 'Web Development',
-    pricing: { kind: 'paid', currency: 'UGX', amount: 7000 },
-    publishedAt: '2026-11-02',
-    readTimeMinutes: 7,
-    imageUrl:
-      'https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&q=80&w=800',
-  },
-  {
-    id: '3',
-    title: 'Domain-Driven Design: Modelling Software Around the Business',
-    excerpt:
-      'How ubiquitous language, bounded contexts, and aggregates help you shape code around the real problem domain instead of around database tables and frameworks.',
-    category: 'Software Engineering',
-    pricing: { kind: 'paid', currency: 'UGX', amount: 5000 },
-    publishedAt: '2026-11-14',
-    readTimeMinutes: 14,
-    imageUrl:
-      'https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&q=80&w=800',
-  },
-]
+
